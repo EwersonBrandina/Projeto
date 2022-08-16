@@ -52,8 +52,14 @@ class Cotacao:
         cotacao = requisicao.json()
         self.d3=0
         for i in cotacao:
+<<<<<<< HEAD
             self.d3 = (self.d3+float(i['bid']))/len(cotacao)  
 #VALOR DOS ÚLTIMOS 3 MESES
+=======
+            self.d3 = (self.d3+float(i['bid']))/len(cotacao)
+        
+#VALOR DOS ÚLTIMOS 3 MESES  
+>>>>>>> 7d0812e7d8c7901ebbf1e2af53f9e1b6e5a85954
     def euro1(self):
         requisicao = requests.get(f'https://economia.awesomeapi.com.br/json/daily/EUR-BRL/90')
         cotacao = requisicao.json()
@@ -94,12 +100,17 @@ class Cotacao:
         requisicao = requests.get(f'https://economia.awesomeapi.com.br/json/daily/EUR-BRL/{meses*30}')
         cotacao = requisicao.json()
         self.me=0
+<<<<<<< HEAD
         n=0
         for i in cotacao:
             if len(str(i['bid'])) == 6:
                 n=n+1
                 self.me=self.me+(float(i['bid']))
         self.me/n
+=======
+        for i in cotacao:
+            self.me = (self.me+float(i['bid']))//len(cotacao)
+>>>>>>> 7d0812e7d8c7901ebbf1e2af53f9e1b6e5a85954
 #VALOR VARIÁVEL, ESCOLHA DO CLIENTE
     def libra2(self, meses):
         requisicao = requests.get(f'https://economia.awesomeapi.com.br/json/daily/GBP-BRL/{meses*30}')
@@ -112,16 +123,25 @@ class Cotacao:
         requisicao = requests.get(f'https://economia.awesomeapi.com.br/json/daily/BTC-BRL/{meses*30}')
         cotacao = requisicao.json()
         self.mb=0
+<<<<<<< HEAD
         n=0
         for i in cotacao:
             if len(str(i['bid'])) == 7:
                 n=n+1
                 self.mb = self.mb+float(i['bid'])
         self.mb/n
+=======
+        for i in cotacao:
+            self.mb = (self.mb+float(i['bid']))//len(cotacao)
+>>>>>>> 7d0812e7d8c7901ebbf1e2af53f9e1b6e5a85954
 #VALOR VARIÁVEL, ESCOLHA DO CLIENTE
     def ethereum2(self, meses):
         requisicao = requests.get(f'https://economia.awesomeapi.com.br/json/daily/ETH-BRL/{meses*30}')
         cotacao = requisicao.json()
         self.met=0
         for i in cotacao:
+<<<<<<< HEAD
             self.met = (self.met+float(i['bid']))/len(cotacao)
+=======
+            self.met = (self.met+float(i['bid']))/len(cotacao)
+>>>>>>> 7d0812e7d8c7901ebbf1e2af53f9e1b6e5a85954
