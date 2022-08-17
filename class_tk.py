@@ -46,16 +46,18 @@ fr5 = Frame()
 def logando():
     mysqldb = mysql.connector.connect(host='localhost',user='root',password='q1w2e3',database='investimentos')
     mycursor = mysqldb.cursor()
-    global user
+    global user, x
     user = fr0_in2.get()
     passw = fr0_in3.get()
     sql = 'select nome, senha from Usuarios where cpf_cnpj = %s and senha = %s'
     mycursor.execute(sql, [(user), (passw)])
     results = mycursor.fetchall()
     if results:
+        x=results[0]
         messagebox.showinfo('', 'login')
         fr0.grid_remove()
         fr2.grid()
+        fr2_lab17['text']=x[0]
         root.geometry("1289x600+310+153")
         return True
         
@@ -310,21 +312,21 @@ def cpf_1(event=None):
     fr1_in0.insert(0, y)
 
 def cnpj(event=None):
-            x=fr0_in2.get().replace('.','').replace('/', '').replace('-', '')[:14]
-            y=''
-            if event.keysym.lower() == "backspace": return
-            for i in range(len(x)):
-                if x[i] in '01234567891011':
-                    if i in [1,4]:
-                        y+=x[i] + '.'
-                    elif i == 7:
-                        y+=x[i] + '/'
-                    elif i == 11:
-                        y+=x[i] + '-' 
-                    else:
-                        y+=x[i]
-            fr0_in2.delete(0, 'end')
-            fr0_in2.insert(0, y)
+    x=fr0_in2.get().replace('.','').replace('/', '').replace('-', '')[:14]
+    y=''
+    if event.keysym.lower() == "backspace": return
+    for i in range(len(x)):
+        if x[i] in '01234567891011':
+            if i in [1,4]:
+                y+=x[i] + '.'
+            elif i == 7:
+                y+=x[i] + '/'
+            elif i == 11:
+                y+=x[i] + '-' 
+            else:
+                y+=x[i]
+    fr0_in2.delete(0, 'end')
+    fr0_in2.insert(0, y)
 
 
 def cnpj_1(event=None):
@@ -406,7 +408,6 @@ def chama_cotacao():
 def chama_media():
     cotar.dolar1()
     fr2_lab12['text']=cotar.d3
-    print(cotar.d3)
     cotar.euro1()
     fr2_lab13['text']=cotar.e3
     cotar.libra1()
@@ -738,22 +739,22 @@ fr2_lab15.place(width=465, height=40, x=470, y=460) #label do Bitcoin Média
 fr2_lab16 = Label(fr2, text='',bd=0)
 fr2_lab16.place(width=465, height=40, x=470, y=535) #label do ETHEREUM Média
 
-fr2_lab17 = Label(fr2, text='ola', font=("Calibri", 15))
+fr2_lab17 = Label(fr2, text='', font=("Calibri", 15))
 fr2_lab17.place(width=145, height=24, x=991, y=191) #Nome
 
-fr2_lab18 = Label(fr2, text='ola', font=("Calibri", 15))
+fr2_lab18 = Label(fr2, text='', font=("Calibri", 15))
 fr2_lab18.place(width=145, height=24, x=991, y=252) #Dólar
 
-fr2_lab19 = Label(fr2, text='ola', font=("Calibri", 15))
+fr2_lab19 = Label(fr2, text='', font=("Calibri", 15))
 fr2_lab19.place(width=145, height=24, x=991, y=308) #Euro
 
-fr2_lab20 = Label(fr2, text='ola', font=("Calibri", 15))
+fr2_lab20 = Label(fr2, text='', font=("Calibri", 15))
 fr2_lab20.place(width=145, height=24, x=991, y=360) #libra
 
-fr2_lab21 = Label(fr2, text='ola', font=("Calibri", 15))
+fr2_lab21 = Label(fr2, text='', font=("Calibri", 15))
 fr2_lab21.place(width=145, height=24, x=991, y=416) #Bitcoin
 
-fr2_lab22 = Label(fr2, text='ola', font=("Calibri", 15))
+fr2_lab22 = Label(fr2, text='', font=("Calibri", 15))
 fr2_lab22.place(width=145, height=24, x=991, y=472) #Ethereum
 
 # Criação de botões
@@ -838,7 +839,7 @@ fr3_bt4 = Button(fr3, bd=0, image=fr3_img_8, command=lambda: [clear_1()])
 fr3_bt4.place(width=115, height=43, x=996, y=461)
 
 #  botão de Confirmar
-fr3_bt5 = Button(fr3, bd=0, image=fr3_img_9, command=lambda: [escolha_guardar])
+fr3_bt5 = Button(fr3, bd=0, image=fr3_img_9, command=lambda: [escolha_guardar()])
 fr3_bt5.place(width=115, height=42, x=1137, y=462)
 
 # Botão de voltar
@@ -927,7 +928,7 @@ fr4_bt3 = Button(fr4, bd=0, image=fr4_img_4, command= lambda:[fr4.grid_remove(),
 fr4_bt4 = Button(fr4, bd=0, image=fr4_img_8, command=lambda: [clear_2()] )
 fr4_bt4.place(width=115, height=43, x=1147, y=502)
 #  botão de Confirmar
-fr4_bt5 = Button(fr4, bd=0, image=fr4_img_9)
+fr4_bt5 = Button(fr4, bd=0, image=fr4_img_9, command=lambda: [escolha_guardar()])
 fr4_bt5.place(width=115, height=42, x=1147, y=438)
 
 # Botão de voltar
@@ -968,7 +969,7 @@ fr5_lab5 = Label(fr5,bd=0, image=fr5_img_12).place(width=218, height=52, x=222, 
 
 fr5_lab6 = Label(fr5,bd=0, image=fr5_img_13).place(width=480, height=52, x=462, y=148) # label media
 
-fr5_lab7 = Label(fr5,text= 'ola', font=("Calibri", 15))
+fr5_lab7 = Label(fr5,text= '', font=("Calibri", 15))
 fr5_lab7.place(width=145, height=24, x=991, y=416) #Montante
 
 fr5_lab8 = Label(fr5, text='',bd=0)
@@ -1013,7 +1014,7 @@ fr5_bt3 = Button(fr5, bd=0, image=fr5_img_4,command= lambda:[fr5.grid_remove(),f
 fr5_bt4 = Button(fr5, bd=0, image=fr5_img_8, command=lambda: [clear_3()])
 fr5_bt4.place(width=115, height=42, x=996, y=459)
 #  botão de Confirmar
-fr5_bt5 = Button(fr5, bd=0, image=fr5_img_9)
+fr5_bt5 = Button(fr5, bd=0, image=fr5_img_9, command=lambda: [escolha_guardar()])
 fr5_bt5.place(width=115, height=42, x=1130, y=460)
 # Botão de voltar
 fr5_bt6 = Button(fr5, bd=0, image=fr4_img_14, command=lambda: [fr5.grid_remove(),fr2.grid(),root.geometry("1289x600+310+153")])
