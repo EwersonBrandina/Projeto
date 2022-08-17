@@ -27,8 +27,4 @@ class Menu():
             elif entrada == '0':
                 print('Obrigado por acessar. Até a próxima.')
             else:
-<<<<<<< HEAD
                 print('Opção invalida!!! Tente novamente.')
-=======
-                print('Opção invalida!!! Tente novamente.')
->>>>>>> 7d0812e7d8c7901ebbf1e2af53f9e1b6e5a85954

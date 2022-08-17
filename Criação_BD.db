@@ -34,8 +34,6 @@ drop table Movimentacoes;
 show tables;
 
 delete from Usuarios where cpf_cnpj="123.456.789-00";
-<<<<<<< HEAD
+
 add foreign key (nome_atk) references Usuarios(cpf_cnpj);
-=======
-add foreign key (nome_atk) references Usuarios(cpf_cnpj);
->>>>>>> 7d0812e7d8c7901ebbf1e2af53f9e1b6e5a85954
+

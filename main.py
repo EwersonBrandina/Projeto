@@ -1,6 +1,5 @@
 import requests
 import json
-<<<<<<< HEAD
 #
 #meses=input('nº de meses:  ')
 #requisicao = requests.get(f'https://economia.awesomeapi.com.br/json/daily/BTC-BRL/{meses*30}')
@@ -24,7 +23,6 @@ for i in cotacao:
         n=n+1
         me=me+float(i['bid'])
 print(me/n)
-=======
 
 requisicao = requests.get(f'https://economia.awesomeapi.com.br/json/daily/USD-BRL/90')
 cotacao = requisicao.json()
@@ -32,4 +30,3 @@ d3=0
 for i in cotacao:
     d3 = d3+float(i['bid'])
 print(d3/len(cotacao))
->>>>>>> 7d0812e7d8c7901ebbf1e2af53f9e1b6e5a85954
